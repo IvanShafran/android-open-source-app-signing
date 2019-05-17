@@ -1,0 +1,18 @@
+def propertiesFilename = "production.properties"
+if (!project.file(propertiesFilename).exists()) {
+    propertiesFilename = "contributors.properties"
+}
+
+def singingProperties = new Properties()
+singingProperties.load(new FileInputStream(file(propertiesFilename)))
+
+android {
+    signingConfigs {
+        release {
+            keyAlias singingProperties.releaseSignKeyAlias
+            keyPassword singingProperties.releaseSignKeyPassword
+            storeFile file(singingProperties.releaseStoreFilePath)
+            storePassword singingProperties.releaseStorePassword
+        }
+    }
+}
