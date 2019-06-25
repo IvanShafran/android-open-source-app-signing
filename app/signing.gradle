@@ -3,16 +3,16 @@ if (!project.file(propertiesFilename).exists()) {
     propertiesFilename = "contributors.properties"
 }
 
-def singingProperties = new Properties()
-singingProperties.load(new FileInputStream(file(propertiesFilename)))
+def signingProperties = new Properties()
+signingProperties.load(new FileInputStream(file(propertiesFilename)))
 
 android {
     signingConfigs {
         release {
-            keyAlias singingProperties.releaseSignKeyAlias
-            keyPassword singingProperties.releaseSignKeyPassword
-            storeFile file(singingProperties.releaseStoreFilePath)
-            storePassword singingProperties.releaseStorePassword
+            keyAlias signingProperties.releaseSignKeyAlias
+            keyPassword signingProperties.releaseSignKeyPassword
+            storeFile file(signingProperties.releaseStoreFilePath)
+            storePassword signingProperties.releaseStorePassword
         }
     }
 }
